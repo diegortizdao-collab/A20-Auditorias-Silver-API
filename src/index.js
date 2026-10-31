@@ -242,6 +242,18 @@ async function handle(req, env, url) {
     return json(req, env, r[0]);
   }
 
+  // --- hallazgos para el dashboard (todos los años) ---
+  if (m === 'GET' && p === '/api/hallazgos') {
+    const [procs, auds, hall] = await Promise.all([
+      sql.query('select codigo, nombre, auditor_tipo, orden from aud_procesos order by orden'),
+      sql.query('select anio, proceso, estado from aud_auditorias order by anio'),
+      sql.query(`select h.id, a.anio, a.proceso, h.tipo, h.texto, h.estado, h.nc_numero
+        from aud_hallazgos h join aud_auditorias a on a.id=h.auditoria_id
+        join aud_procesos pr on pr.codigo=a.proceso order by a.anio, pr.orden, h.orden`),
+    ]);
+    return json(req, env, { procesos: procs, auditorias: auds, hallazgos: hall });
+  }
+
   // --- tablero histórico ---
   if (m === 'GET' && p === '/api/tablero') {
     const [porAnio, porProceso, eficacia, abiertos] = await Promise.all([

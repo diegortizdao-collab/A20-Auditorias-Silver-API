@@ -14,7 +14,7 @@ Conectar este repo en Cloudflare › Workers & Pages › Create › Import a rep
 `https://a20-auditorias-silver-api.<subdominio>.workers.dev/api/health` → `{"ok":true}`.
 
 ## Endpoints (todos con cabecera `X-Clave` = ADMIN_KEY, salvo /api/health)
-- `GET /api/anios` · `GET /api/programa?anio=2026` · `GET /api/tablero`
+- `GET /api/anios` · `GET /api/programa?anio=2026` · `GET /api/tablero` · `GET /api/hallazgos` (dashboard)
 - `POST /api/auditorias` {anio, proceso} — crea la auditoría del año copiando datos y checklist del último año
 - `GET|PATCH /api/auditorias/:id`
 - `PUT /api/auditorias/:id/resultados/:orden` {resultado, evidencia, redaccion}
