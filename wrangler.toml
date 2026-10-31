@@ -1,0 +1,18 @@
+name = "a20-auditorias-silver-api"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Orígenes que pueden llamar a la API (separados por coma).
+ALLOWED_ORIGINS = "https://diegortizdao-collab.github.io"
+
+# Secrets Store (los mismos que usa P07-Moldes-Silver-API). Tienen que figurar acá o el deploy los borra.
+[[secrets_store_secrets]]
+binding = "ADMIN_KEY"
+store_id = "016a0d22aadd49bfab8f219be3c83f25"
+secret_name = "ADMIN_KEY"
+
+[[secrets_store_secrets]]
+binding = "DATABASE_URL"
+store_id = "016a0d22aadd49bfab8f219be3c83f25"
+secret_name = "DATABASE_URL"
